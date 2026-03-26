@@ -1,0 +1,249 @@
+MULTI-CLIENT BRAND BIBLE
+Managed by Gupta Media
+Version 2.0 — Covers: FitFlow, Acme Corp, NovaSkin
+
+This document is the authoritative source of truth for all ad copy across all managed clients.
+The compliance agent must identify which client the ad is for and apply ONLY that client's rules.
+
+================================================================================
+CLIENT: FITFLOW
+Tagline: "Move More. Live Better."
+================================================================================
+
+1. BRAND OVERVIEW
+-----------------
+FitFlow is a premium digital fitness platform targeting women aged 25–45 who want
+sustainable, science-backed fitness — not fad diets or extreme regimens.
+We exist at the intersection of empathy and performance. Our users are busy, smart,
+and skeptical of empty promises. We earn their trust by keeping ours.
+
+2. BRAND VOICE & TONE
+---------------------
+ENERGETIC but not aggressive. EMPOWERING but not preachy. HONEST but not blunt.
+We speak like a knowledgeable friend — warm, direct, and real.
+
+DO use: 'you', 'your', conversational contractions, active voice.
+DO NOT use: 'lose weight fast', 'burn fat', 'shred', 'no pain no gain', 'guilt',
+'lazy', 'cheat day', exclamation marks (max 1 per ad unit), all-caps for emphasis.
+
+3. APPROVED MESSAGING PILLARS
+------------------------------
+Pillar 1 — SUSTAINABILITY: long-term habits over quick fixes.
+Pillar 2 — PERSONALISATION: adaptive coaching engine, 'fits your life', 'your pace'.
+Pillar 3 — COMMUNITY: reference 200,000+ member community when relevant.
+Pillar 4 — SCIENCE-BACKED: 'expert trainers', 'science-backed', 'clinically informed'.
+
+4. CLAIMS POLICY
+----------------
+PROHIBITED:
+- Specific weight loss guarantees (e.g. 'lose 10 lbs in 2 weeks')
+- Medical or therapeutic claims ('cures', 'treats', 'heals')
+- Comparative superlatives without evidence ('#1 fitness app in the world')
+- Before/after body transformation framing implying guaranteed results
+- Body image language: 'fat', 'skinny', 'slim down', 'get thin', 'tone up' (as weight-loss synonym)
+- Competitor references — never name a competitor, no implied comparisons
+- Urgency manipulation: 'last chance', 'only X left', 'don't miss out' (unless factually verified)
+- Hyperbole: 'best ever', 'world-class' (unless licensed), 'revolutionary', 'groundbreaking'
+
+APPROVED:
+- 'Up to X% of members report...' (with source)
+- Aggregated social proof: '200,000 members and counting'
+- 'Our trainers are certified by...'
+
+5. PLATFORM-SPECIFIC RULES
+---------------------------
+META (Facebook/Instagram):
+- Headlines: max 40 characters for best delivery
+- Body: lead with the emotional hook in the first 125 characters
+- CTA buttons: 'Shop Now', 'Learn More', 'Sign Up' preferred; custom CTAs in body copy allowed
+- No direct price comparisons with named competitors
+
+GOOGLE (Search):
+- Headlines: max 30 characters, no punctuation at the end
+- Headline 1 must include the brand name or primary keyword
+- Descriptions must include at least one call to action
+
+TIKTOK:
+- Hook must land in the first 3 seconds — mirror this in copy
+- Casual, first-person or second-person framing preferred
+- Avoid corporate language entirely
+- Approved CTAs: 'Get Yours', 'Shop Now', 'Try It'
+
+DISPLAY:
+- Headline: max 25 characters — ultra-concise, benefit-led
+- Body: max 1 short sentence (90 characters)
+- Must include offer or proof point prominently
+
+LINKEDIN:
+- APPROVED for FitFlow B2B Corporate Wellness ONLY (targeting HR directors, People Ops, employee wellness managers)
+- NOT approved for consumer direct-to-consumer FitFlow campaigns
+- Tone must be professional and ROI-focused, not emotional/lifestyle
+- Approved CTAs: 'Book a Demo', 'Get a Pilot', 'Learn More'
+
+6. OFFER & PRICING GUIDELINES
+------------------------------
+Current approved offers (Q2 2025):
+- 50% off premium annual plan (Summer Sale — approved through August 31, 2025)
+- Free 7-day trial (evergreen — always approved)
+- $1 first-month trial (Meta and Google only)
+B2B (LinkedIn): 90-day pilot program available for teams of 50+
+
+7. LEGAL & COMPLIANCE
+----------------------
+All copy subject to FTC endorsement guidelines. Testimonials must reflect typical
+results unless marked 'individual results may vary'. Any ad referencing a specific
+person requires a signed model release on file with Gupta Media legal.
+
+================================================================================
+CLIENT: ACME CORP
+Product: AI-powered CRM for B2B sales teams
+Tagline: "Close More. Work Less."
+================================================================================
+
+1. BRAND OVERVIEW
+-----------------
+Acme Corp sells an AI-powered CRM platform targeting B2B sales teams of 10–500
+at growth-stage companies. Buyers are VP Sales, RevOps, and Sales Directors.
+They are data-driven skeptics who have been burned by over-promised software before.
+Every claim must feel earned and backed by specificity.
+
+2. BRAND VOICE & TONE
+---------------------
+CONFIDENT but not arrogant. DATA-DRIVEN but not robotic. DIRECT but not aggressive.
+Speak to the pain of inefficiency. Never use casual slang or consumer language.
+
+DO use: specific outcomes ('40% more time selling'), active verbs, second-person ('your team').
+DO NOT use: 'easy', 'simple', 'just' (minimizes real complexity), vague superlatives,
+consumer-style urgency ('limited time!'), pricing without qualification.
+
+3. APPROVED MESSAGING PILLARS
+------------------------------
+Pillar 1 — EFFICIENCY: less admin, more selling time. 'Eliminate busywork.'
+Pillar 2 — INTELLIGENCE: AI-powered lead scoring, automated follow-ups.
+Pillar 3 — SPEED: reach leads faster, pipeline velocity, response time.
+Pillar 4 — PROOF: case studies, percentages, trial offers — always specific.
+
+4. CLAIMS POLICY
+----------------
+PROHIBITED:
+- Unqualified ROI claims ('double your revenue') without 'up to' qualifier
+- Specific revenue guarantees
+- Naming or implying competitor inferiority
+- 'Easy' or 'simple' — these undermine enterprise credibility
+- Pricing claims without 'starting at' or pre-approval from media team
+
+APPROVED:
+- 'Up to X% more time selling' (with 'based on customer data' qualifier)
+- 'Teams using Acme close X% more deals' (with source)
+- Free trial CTAs — always qualified with trial length
+
+5. PLATFORM-SPECIFIC RULES
+---------------------------
+LINKEDIN:
+- Primary channel. Professional tone mandatory.
+- Headlines: problem-led or outcome-led. Max 70 characters.
+- Approved CTAs: 'Book a Demo', 'See It in Action', 'Start Free Trial', 'Get a Quote'
+
+GOOGLE (Search):
+- Keyword-aligned headlines. Brand name in Headline 1.
+- No punctuation at end of headlines. Max 30 characters per headline.
+- CTAs must be in description, not headline.
+
+META (Facebook):
+- APPROVED for retargeting and lookalike audiences ONLY
+- Tone should be warmer than LinkedIn but still professional
+- No consumer-style emotional appeals
+
+DISPLAY:
+- Short, benefit-led. Approved for retargeting.
+- Headline max 25 characters. Single clear CTA.
+
+TIKTOK:
+- NOT an approved channel for Acme Corp. Reject any TikTok copy for this client.
+
+6. LEGAL & COMPLIANCE
+----------------------
+All performance statistics require 'based on customer data' or 'in internal study'.
+No guaranteed outcome claims. Case studies require legal sign-off before referencing.
+
+================================================================================
+CLIENT: NOVASKIN
+Product: Premium dermatologist-formulated skincare serum
+Tagline: "Science You Can See."
+================================================================================
+
+1. BRAND OVERVIEW
+-----------------
+NovaSkin sells a premium anti-aging and renewal serum targeting women aged 35–60
+who are science-literate, ingredient-conscious, and skeptical of over-hyped beauty claims.
+They want proof, not promises. NovaSkin's differentiator is clinical credibility.
+
+2. BRAND VOICE & TONE
+---------------------
+PREMIUM but accessible. SCIENCE-FORWARD but not cold. EMPOWERING but never fear-based.
+We celebrate skin health without shaming natural aging. No before/after body framing.
+
+DO use: 'clinically tested', 'dermatologist-formulated', 'visible results', 'science-backed'.
+DO NOT use: 'miracle', 'fix', 'cure', 'anti-aging' without scientific qualifier,
+fear-based language about aging, body-shaming or comparison language.
+
+3. APPROVED MESSAGING PILLARS
+------------------------------
+Pillar 1 — CLINICAL CREDIBILITY: dermatologist-formulated, clinically tested.
+Pillar 2 — VISIBLE RESULTS: 'visible results in X days' (requires 'in clinical study' qualifier).
+Pillar 3 — COMMUNITY TRUST: '50,000+ customers', real reviews, community-approved.
+Pillar 4 — PREMIUM QUALITY: ingredient quality, luxury positioning, 'your skin deserves'.
+
+4. CLAIMS POLICY
+----------------
+PROHIBITED:
+- 'Miracle', 'cure', 'fix', 'reverses aging' — too absolute, FTC risk
+- Specific measurement claims ('reduces wrinkles by 70%') without 'in clinical study'
+- Before/after transformation framing implying guaranteed results
+- Age-shaming: never reference aging as a problem to be fixed
+- Competitor comparisons by name
+- 'Proven' without an evidence qualifier
+
+APPROVED:
+- 'Clinically tested' — always approved
+- 'Visible results in 14 days' — approved with 'in clinical study, results may vary'
+- 'Dermatologist-formulated' — always approved
+- 'Up to X% improvement in [metric]' with 'in clinical study' qualifier
+
+5. PLATFORM-SPECIFIC RULES
+---------------------------
+META (Facebook/Instagram):
+- Visual-first mindset in copy — describe the sensory/lifestyle experience
+- Headlines: max 40 characters
+- Emotional + credibility combination works best
+- Approved CTAs: 'Shop Now', 'Learn More'
+
+GOOGLE (Search):
+- Lead with clinical credibility in headline
+- No punctuation at end of headlines. Max 30 characters.
+- Include 'free shipping' or 'risk-free' offer in description when active
+
+TIKTOK:
+- Community and authenticity-first. 'Real results — no filters needed' framing approved.
+- Hook in first line. Casual but credible.
+- Approved CTAs: 'Shop Now', 'Get Yours'
+
+DISPLAY:
+- Ultra-concise. Headline max 25 characters. Lead with proof or offer.
+- Single CTA only.
+
+LINKEDIN:
+- NOT an approved channel for NovaSkin. Consumer beauty brands are off-target for LinkedIn.
+
+6. OFFER & PRICING GUIDELINES
+------------------------------
+Current approved offers (Q2 2025):
+- Free shipping on first order (evergreen)
+- 30-day money-back guarantee (evergreen — always approved to reference)
+- 15% off first order with email sign-up (Meta and Display only)
+
+7. LEGAL & COMPLIANCE
+----------------------
+All dermatological claims must include 'Results may vary' in ad disclaimers.
+'Clinically tested' requires the full disclaimer: 'In a clinical study of X participants'.
+No claims that imply treatment of medical skin conditions (eczema, psoriasis, acne as disease).
