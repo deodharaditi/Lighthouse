@@ -41,12 +41,8 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Streamlit
-.streamlit/secrets.toml
-
-# Project data — keep structure, ignore sensitive files
+# Project data — ignore only sensitive/generated files
 data/brand_bible.pdf
-data/top_ads.csv
 
 # Uploaded file IDs (contain API references)
 file_ids.json
