@@ -1,36 +1,40 @@
-# AdAgent — Multi-Agent Creative Guardrail
+# Lighthouse — Multi-Agent Creative Guardrail
 
-An AI system that automates QA for high-velocity ad creative pipelines. Two specialized agents work in a feedback loop: one generates ad copy, the other enforces brand compliance.
+An AI system that automates brand compliance QA for performance marketing agencies. Two specialized Claude agents work in a real-time feedback loop: one generates platform-native ad copy, the other enforces brand rules — with a live visualization of every step.
 
-Built as a reference implementation targeting performance marketing agencies.
+Built as a reference implementation targeting agencies like Gupta Media.
 
 ---
 
 ## The Problem
 
-At high-velocity agencies, human QA is the slowest part of the creative pipeline. Scaling ad variations (50–100 per campaign) means brand rules get missed — wrong tone, forbidden words, incorrect CTAs. This system catches violations before a human ever sees the draft.
+At high-velocity agencies, human QA is the slowest part of the creative pipeline. Scaling ad variations across platforms (Meta, Google, TikTok, LinkedIn, Display) means brand rules get missed — wrong tone, forbidden words, specific weight-loss claims, incorrect CTAs. This system catches violations before a human ever sees the draft.
+
+---
 
 ## How It Works
 
 ```
-Brief + Historical Ads
+Brief + Client + Platform
         │
         ▼
   ┌─────────────┐
-  │  Generator  │  ← Agent A: writes ad copy using top-performing patterns
+  │  Generator  │  ← writes platform-native copy using top-performing ad examples
   └──────┬──────┘
          │ draft
          ▼
   ┌─────────────┐
-  │   Sentinel  │  ← Agent B: audits against Brand Bible PDF
+  │   Critic    │  ← audits against Brand Bible via Anthropic Files API
   └──────┬──────┘
          │
-    PASS? ──► Final Output (approved ad)
+    PASS? ──► Approved ✓
          │
-    FAIL? ──► Rejection notes sent back to Generator (max 3 retries)
+    FAIL? ──► Violations + fix suggestions fed back to Generator (max 3 retries)
          │
-   3 failures? ──► Escalate to Human Review
+   3 failures? ──► Escalated to Human Review ⚠
 ```
+
+Each step streams to the frontend in real time via Server-Sent Events. The UI shows both agents live, highlights what changed between attempts, and lets you inspect the exact brand rule that triggered each violation.
 
 ---
 
@@ -38,121 +42,52 @@ Brief + Historical Ads
 
 | Layer | Tool |
 |---|---|
-| LLM | Claude Opus 4.6 (`claude-opus-4-6`) |
-| Orchestration | Python state machine (no framework) |
+| LLM — Generator | Claude Opus 4.6 (`claude-opus-4-6`) |
+| LLM — Critic | Claude Sonnet 4.6 (`claude-sonnet-4-6`) |
+| Structured output | Anthropic tool use + Pydantic |
 | Brand Bible storage | Anthropic Files API |
-| Structured output | `client.messages.parse()` + Pydantic |
-| Performance context | pandas CSV |
-| UI | Streamlit |
+| Performance context | pandas (CSV few-shot examples) |
+| Backend | FastAPI + Server-Sent Events |
+| Frontend | Next.js 14, TypeScript, Tailwind CSS |
+| Deployment | Railway (backend) + Vercel (frontend) |
 
 ---
 
 ## Project Structure
 
 ```
-AdAgent/
+Lighthouse/
 ├── agents/
-│   ├── __init__.py
-│   ├── generator.py        # Agent A: ad copy writer
-│   └── critic.py           # Agent B: brand compliance sentinel
+│   ├── generator.py        # Agent A: ad copywriter (platform-aware, few-shot)
+│   └── critic.py           # Agent B: brand compliance sentinel (structured output)
 ├── data/
-│   ├── brand_bible.pdf     # Client brand guidelines (not committed)
-│   └── top_ads.csv         # Historical top-performing ads (not committed)
+│   ├── brand_bible.txt     # Brand guidelines — customisable per client
+│   └── top_ads_sample.csv  # Historical top-performing ads per client × platform
 ├── scripts/
-│   └── upload_brand_bible.py   # One-time: uploads PDF to Files API
-├── pipeline.py             # State machine loop (generator ↔ sentinel)
-├── app.py                  # Streamlit dashboard
+│   └── upload_brand_bible.py   # One-time: uploads brand bible to Anthropic Files API
+├── frontend/               # Next.js app (separate deployment)
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── AgentCard.tsx   # Live agent state card with diff highlighting
+│   │   │   └── BriefForm.tsx   # Campaign input bar
+│   │   ├── page.tsx            # Main canvas with SSE event handling
+│   │   ├── types.ts            # Shared TypeScript types
+│   │   └── globals.css         # Custom animations
+│   └── .env.local
+├── pipeline.py             # State machine: generator ↔ critic retry loop
+├── server.py               # FastAPI SSE server
 ├── requirements.txt
-├── .env.example
 └── README.md
 ```
 
 ---
 
-## Setup
-
-### 1. Clone and install dependencies
-
-```bash
-git clone <repo-url>
-cd AdAgent
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### 2. Configure environment
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-```
-ANTHROPIC_API_KEY=your_api_key_here
-BRAND_BIBLE_FILE_ID=         # filled after step 3
-```
-
-### 3. Upload your Brand Bible (one-time)
-
-Place your brand guidelines PDF at `data/brand_bible.pdf`, then:
-
-```bash
-python scripts/upload_brand_bible.py
-```
-
-Copy the printed `FILE_ID` into your `.env`.
-
-### 4. Add historical ad data
-
-Create `data/top_ads.csv` with columns:
-
-```
-client,headline,body,cta,ctr
-Fender,Discover Your Sound,"Find the guitar that speaks to you.",Shop Now,0.042
-...
-```
-
-### 5. Run the app
-
-```bash
-streamlit run app.py
-```
-
----
-
-## Environment Variables
-
-| Variable | Description |
-|---|---|
-| `ANTHROPIC_API_KEY` | Your Anthropic API key |
-| `BRAND_BIBLE_FILE_ID` | File ID returned after uploading brand bible |
-
----
-
-## Agent Personas
-
-**Agent A — The Generator**
-> Writes high-converting ad copy using a client brief and few-shot examples drawn from historical top performers. Receives rejection notes and revises on failure.
-
-**Agent B — The Brand Sentinel**
-> Audits copy strictly against the Brand Bible. Returns a structured `PASS/FAIL` with specific violation reasons. Has no creative discretion — its only job is to find problems.
-
----
-
-## Pipeline Behavior
-
-| Scenario | Outcome |
-|---|---|
-| Copy passes on first attempt | `APPROVED` after 1 iteration |
-| Copy fails, revision passes | `APPROVED` after 2–3 iterations |
-| 3 consecutive failures | `HUMAN_REVIEW` — flagged for manual QA |
-
----
-
 ## Extending This
 
-- **Add more clients**: Drop new entries in `top_ads.csv` and upload a new brand bible PDF per client
-- **Visual asset compliance**: Integrate a vision model pass to check image/banner assets
-- **Webhook output**: Replace the Streamlit panel with a Slack/email notification on approval
+Lighthouse is designed to be client-agnostic. To adapt it to any brand:
+
+- **Brand bible**: Edit `data/brand_bible.txt` with the client's voice, claims policy, platform rules, and prohibited words — then re-upload via `scripts/upload_brand_bible.py`
+- **Ad examples**: Add rows to `data/top_ads_sample.csv` (columns: `client, headline, body, cta, performance_score, platform`) to give the Generator better few-shot context
+- **Image generation**: After approval, pass the copy to an image generation API (DALL-E 3, Stability AI) for a visual creative mockup
 - **Batch mode**: Use the Anthropic Batches API to generate 50+ variations simultaneously
+- **Webhook output**: Replace the SSE stream with a Slack or email notification on approval
