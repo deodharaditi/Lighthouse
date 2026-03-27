@@ -45,7 +45,7 @@ Each step streams to the frontend in real time via Server-Sent Events. The UI sh
 | LLM — Generator | Claude Opus 4.6 (`claude-opus-4-6`) |
 | LLM — Critic | Claude Sonnet 4.6 (`claude-sonnet-4-6`) |
 | Structured output | Anthropic tool use + Pydantic |
-| Brand Bible storage | Anthropic Files API |
+| Brand Bible storage | Anthropic Files API (session upload or pre-loaded) |
 | Performance context | pandas (CSV few-shot examples) |
 | Backend | FastAPI + Server-Sent Events |
 | Frontend | Next.js 14, TypeScript, Tailwind CSS |
@@ -86,7 +86,7 @@ Lighthouse/
 
 Lighthouse is designed to be client-agnostic. To adapt it to any brand:
 
-- **Brand bible**: Edit `data/brand_bible.txt` with the client's voice, claims policy, platform rules, and prohibited words — then re-upload via `scripts/upload_brand_bible.py`
+- **Brand bible**: Upload any PDF or TXT directly through the UI — the Critic agent switches to it immediately for that session. To pre-load a default, edit `data/brand_bible.txt` and run `scripts/upload_brand_bible.py` once to get a file ID for your deployment env vars.
 - **Ad examples**: Add rows to `data/top_ads_sample.csv` (columns: `client, headline, body, cta, performance_score, platform`) to give the Generator better few-shot context
 - **Image generation**: After approval, pass the copy to an image generation API (DALL-E 3, Stability AI) for a visual creative mockup
 - **Batch mode**: Use the Anthropic Batches API to generate 50+ variations simultaneously
