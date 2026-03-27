@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { Platform } from "../types";
 
 const PLATFORMS: Platform[] = ["Meta", "Google", "TikTok", "LinkedIn", "Display"];
@@ -9,11 +10,15 @@ interface BriefFormProps {
   platform: Platform;
   brief: string;
   running: boolean;
+  bibleFilename?: string;
+  uploadingBible?: boolean;
   onChange: (field: "client" | "platform" | "brief", value: string) => void;
   onSubmit: () => void;
+  onBibleUpload: (file: File) => void;
 }
 
-export default function BriefForm({ client, platform, brief, running, onChange, onSubmit }: BriefFormProps) {
+export default function BriefForm({ client, platform, brief, running, bibleFilename, uploadingBible, onChange, onSubmit, onBibleUpload }: BriefFormProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="shrink-0 border-b border-white/5 bg-[#0b0b12] px-6 py-4">
       <div className="flex gap-4 items-end">
@@ -51,6 +56,45 @@ export default function BriefForm({ client, platform, brief, running, onChange, 
             placeholder="Campaign goal, target audience, key message, tone…"
             onChange={(e) => onChange("brief", e.target.value)}
           />
+        </Field>
+
+        {/* Divider */}
+        <div className="self-stretch w-px bg-white/6 mx-1 mb-0.5" />
+
+        {/* Brand Bible Upload */}
+        <Field label="Brand Bible" width="w-[148px]">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,.txt"
+            className="hidden"
+            onChange={(e) => { const f = e.target.files?.[0]; if (f) onBibleUpload(f); }}
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploadingBible || running}
+            className="w-full h-15.5 flex flex-col items-center justify-center gap-1 rounded-xl border border-dashed transition-all duration-200 text-center
+              border-white/12 hover:border-[#7C4DFF]/50 hover:bg-[#7C4DFF]/5
+              disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {uploadingBible ? (
+              <span className="text-[10px] text-slate-500">Uploading…</span>
+            ) : bibleFilename ? (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00E676]" />
+                <span className="text-[10px] text-slate-400 leading-tight px-2 truncate w-full text-center">{bibleFilename}</span>
+                <span className="text-[9px] text-slate-600">click to replace</span>
+              </>
+            ) : (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-slate-600">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                <span className="text-[10px] text-slate-600">PDF or TXT</span>
+              </>
+            )}
+          </button>
         </Field>
 
         {/* Button */}

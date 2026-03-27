@@ -1,9 +1,11 @@
 import os
+import io
 import json
 import asyncio
+import anthropic
 from concurrent.futures import ThreadPoolExecutor
-from fastapi import FastAPI, Query
-from fastapi.responses import StreamingResponse
+from fastapi import FastAPI, Query, UploadFile, File
+from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from pipeline import run_pipeline_stream
@@ -20,9 +22,22 @@ app.add_middleware(
         "https://*.vercel.app",
         os.environ.get("FRONTEND_URL", ""),
     ],
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+
+@app.post("/upload-bible")
+async def upload_bible(file: UploadFile = File(...)):
+    contents = await file.read()
+    filename = file.filename or "brand_bible"
+    mime = "application/pdf" if filename.lower().endswith(".pdf") else "text/plain"
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    response = client.beta.files.upload(
+        file=(filename, io.BytesIO(contents), mime),
+        betas=["files-api-2025-04-14"],
+    )
+    return JSONResponse({"file_id": response.id, "filename": filename})
 
 
 @app.get("/run")
@@ -30,9 +45,12 @@ async def run(
     brief: str = Query(...),
     client_name: str = Query(...),
     platform: str = Query(...),
+    bible_file_id: str | None = Query(default=None),
 ):
     csv_path = os.environ.get("TOP_ADS_CSV", "data/top_ads_sample.csv")
-    brand_bible_file_id = os.environ["BRAND_BIBLE_FILE_ID"]
+    brand_bible_file_id = bible_file_id or os.environ.get("BRAND_BIBLE_FILE_ID")
+    if not brand_bible_file_id:
+        return JSONResponse({"error": "No brand bible loaded. Upload a brand bible first."}, status_code=400)
 
     loop = asyncio.get_event_loop()
     queue: asyncio.Queue = asyncio.Queue()

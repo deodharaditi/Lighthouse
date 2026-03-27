@@ -14,6 +14,9 @@ export default function Home() {
   const [running, setRunning] = useState(false);
   const [attempts, setAttempts] = useState<AttemptState[]>([]);
   const [result, setResult] = useState<PipelineResult | null>(null);
+  const [bibleFileId, setBibleFileId] = useState<string | null>(null);
+  const [bibleFilename, setBibleFilename] = useState<string | undefined>();
+  const [uploadingBible, setUploadingBible] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
   const timingRef = useRef<Record<number, { genStart?: number; criticStart?: number }>>({});
 
@@ -31,6 +34,20 @@ export default function Home() {
     setAttempts((prev) => prev.map((a) => (a.attempt === n ? { ...a, ...patch } : a)));
   }
 
+  async function handleBibleUpload(file: File) {
+    setUploadingBible(true);
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch(`${API_URL}/upload-bible`, { method: "POST", body: form });
+      const data = await res.json();
+      setBibleFileId(data.file_id);
+      setBibleFilename(data.filename);
+    } finally {
+      setUploadingBible(false);
+    }
+  }
+
   async function handleSubmit() {
     setRunning(true);
     setAttempts([]);
@@ -38,6 +55,7 @@ export default function Home() {
     timingRef.current = {};
 
     const params = new URLSearchParams({ brief, client_name: client, platform });
+    if (bibleFileId) params.set("bible_file_id", bibleFileId);
     const es = new EventSource(`${API_URL}/run?${params}`);
 
     es.onmessage = (e: MessageEvent) => {
@@ -120,8 +138,11 @@ export default function Home() {
         platform={platform}
         brief={brief}
         running={running}
+        bibleFilename={bibleFilename}
+        uploadingBible={uploadingBible}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onBibleUpload={handleBibleUpload}
       />
 
       {/* Canvas */}
