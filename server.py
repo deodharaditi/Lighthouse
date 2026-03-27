@@ -15,13 +15,11 @@ load_dotenv()
 app = FastAPI()
 executor = ThreadPoolExecutor()
 
+_extra_origin = os.environ.get("FRONTEND_URL", "")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://*.vercel.app",
-        os.environ.get("FRONTEND_URL", ""),
-    ],
+    allow_origins=[o for o in ["http://localhost:3000", _extra_origin] if o],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
